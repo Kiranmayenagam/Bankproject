@@ -34,8 +34,13 @@ namespace bankproject
                     case "1":
                         Console.WriteLine("Email Address");
                         var emailAddress = Console.ReadLine();
-                        Console.WriteLine("Type Of Account");
-                        var typeOfAccount = Console.ReadLine();
+                        Console.WriteLine("Please from the type of account:");
+                        var accountTypes = Enum.GetNames(typeof(AccountTypes));
+                        for (int i = 0; i < accountTypes.Length; i++)
+                        {
+                            Console.WriteLine($"{i + 1}.{accountTypes[i]}");
+                        }
+                        var typeOfAccount =(AccountTypes)(Convert.ToInt32(Console.ReadLine()) - 1);
                         Console.WriteLine("Amount :");
                         var amount = Convert.ToDecimal(Console.ReadLine());
 
@@ -43,10 +48,15 @@ namespace bankproject
                         Console.WriteLine($"AcountNumber:{account.AccountNumber}, Type:{account.TypeOfAccount},Balance:{account.Balance :C},Email Address:{account.EmailAddress}");
                        break;
                     case "2":
+                        PrintAllAccounts();
                         break;
                     case "3":
+                        PrintAllAccounts();
                         break;
                     case "4":
+                        PrintAllAccounts();
+
+                        break;
                     default:
                         break;
                 }
@@ -59,6 +69,16 @@ namespace bankproject
             }
 
 
+        }
+
+        private static void PrintAllAccounts()
+        {
+            var accounts = Bank.GetAllAccounts();
+            foreach (var A in accounts)
+            {
+                Console.WriteLine($"AcountNumber:{A.AccountNumber}, Type:{A.TypeOfAccount},Balance:{A.Balance:C},Email Address:{A.EmailAddress}");
+
+            }
         }
     }
 }

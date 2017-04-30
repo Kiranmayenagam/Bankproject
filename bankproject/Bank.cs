@@ -8,11 +8,17 @@ namespace bankproject
 {
     static class Bank
     {
-        public static Account CreateAccount(string emailAddress,decimal amount,string typeOfAccount)
+        private static List<Account> accounts = new List<Account>();
+        public static Account CreateAccount(string emailAddress,decimal amount,AccountTypes typeOfAccount)
         {
             var account = new Account(emailAddress, typeOfAccount);
             account.Deposit(amount);
+            accounts.Add(account);
             return account;
+        }
+        public static List<Account> GetAllAccounts()
+        {
+            return accounts;
         }
 
     }
