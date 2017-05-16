@@ -30,6 +30,8 @@ namespace bankproject
         public int AccountNumber { get;private set; }
         public decimal Balance { get; private set; }
         public AccountTypes TypeOfAccount { get; set; }
+
+        public virtual ICollection<Transcation> Transactions { get; set; }
         #endregion
         #region Constructors 
         public Account()

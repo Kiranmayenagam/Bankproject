@@ -8,7 +8,7 @@ namespace bankproject
 {
     static class Bank
     {
-        private static List<Account> accounts = new List<Account>();
+        
         private static BankModel db = new BankModel();
         public static Account CreateAccount(string emailAddress,decimal amount,AccountTypes typeOfAccount)
         {
@@ -20,11 +20,11 @@ namespace bankproject
         }
         public static List<Account> GetAllAccounts()
         {
-            return accounts;
+            return db.Accounts.ToList();
         }
         public static decimal Desposit(int accountNumber,decimal amount)
         {
-            var account = accounts.Where(a => a.AccountNumber == accountNumber).FirstOrDefault();
+            var account = db.Accounts.Where(a => a.AccountNumber == accountNumber).FirstOrDefault();
             if (account == null)
                 throw new ArgumentException("Account not found");
 
@@ -43,7 +43,7 @@ namespace bankproject
         }
         public static decimal Withdraw(int accountNumber, decimal amount)
         {
-            var account = accounts.Where(a => a.AccountNumber == accountNumber).FirstOrDefault();
+            var account = db.Accounts.Where(a => a.AccountNumber == accountNumber).FirstOrDefault();
             if (account == null)
                 throw new ArgumentException("Account not found");
             var newBalance = account.Withdraw(amount);
@@ -61,6 +61,10 @@ namespace bankproject
 
 
            
+        }
+        public static List<Transcation> GetAllTransactionsByAccount(int accountNumber)
+        {
+            return db.Transactions.Where(t => t.AccountNumber == accountNumber).ToList();
         }
 
     }
