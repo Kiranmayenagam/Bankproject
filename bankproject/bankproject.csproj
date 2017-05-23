@@ -65,6 +65,10 @@
     <Compile Include="Migrations\201705142127505_Relationships.Designer.cs">
       <DependentUpon>201705142127505_Relationships.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705212135439_CreatedDateAddition.cs" />
+    <Compile Include="Migrations\201705212135439_CreatedDateAddition.Designer.cs">
+      <DependentUpon>201705212135439_CreatedDateAddition.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,6 +84,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705142127505_Relationships.resx">
       <DependentUpon>201705142127505_Relationships.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705212135439_CreatedDateAddition.resx">
+      <DependentUpon>201705212135439_CreatedDateAddition.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
