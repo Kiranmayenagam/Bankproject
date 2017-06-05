@@ -27,7 +27,7 @@ namespace bankproject
         /// </summary>
         public string EmailAddress { get; set; }
         [Key]
-        public int AccountNumber { get;private set; }
+        public int AccountNumber { get; set; }
         public decimal Balance { get; private set; }
         public AccountTypes TypeOfAccount { get; set; }
         public DateTime CreatedDate { get; set; }

@@ -67,6 +67,23 @@ namespace bankproject
         {
             return db.Transactions.Where(t => t.AccountNumber == accountNumber).ToList();
         }
-
+        public static Account GetAccountByAccountNumber(int id)
+        {
+            return db.Accounts.Find(id);
+        }
+        public static void EditAccount(Account account)
+        {
+            var oldAccount = db.Accounts.Find(account.AccountNumber);
+            db.Entry(oldAccount).State = System.Data.Entity.EntityState.Modified;
+            oldAccount.TypeOfAccount = account.TypeOfAccount;
+            db.SaveChanges();
+               
+        }
+        public static void DeleteAccount(int id)
+        {
+            Account account = db.Accounts.Find(id);
+            db.Accounts.Remove(account);
+            db.SaveChanges();
+        }
     }
 }
