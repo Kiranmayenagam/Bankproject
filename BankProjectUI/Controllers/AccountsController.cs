@@ -20,6 +20,45 @@ namespace BankProjectUI.Controllers
         {
             return View(Bank.GetAllAccountsByEmailAddress(HttpContext.User.Identity.Name));
         }
+
+        public  ActionResult Deposit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Account account = Bank.GetAccountByAccountNumber(id.Value);
+
+            return View(account);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Deposit(FormCollection controls)
+        {
+            var accountNumber = Convert.ToInt32(controls["AccountNumber"]);
+            var amount = Convert.ToDecimal(controls["Amount"]);
+            Bank.Deposit(accountNumber, amount);
+            return RedirectToAction("Index");
+        }
+        public ActionResult Withdraw(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Account account = Bank.GetAccountByAccountNumber(id.Value);
+
+            return View(account);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Withdraw(FormCollection controls)
+        {
+            var accountNumber = Convert.ToInt32(controls["AccountNumber"]);
+            var amount = Convert.ToDecimal(controls["Amount"]);
+            Bank.Withdraw(accountNumber, amount);
+            return RedirectToAction("Index");
+        }
         public ActionResult Transactions(int? id)
         {
             if (id == null)

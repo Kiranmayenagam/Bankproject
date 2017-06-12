@@ -23,7 +23,7 @@ namespace bankproject
         {
             return db.Accounts.Where(a => a.EmailAddress == emailAddress).ToList();
         }
-        public static decimal Desposit(int accountNumber,decimal amount)
+        public static decimal Deposit(int accountNumber,decimal amount)
         {
             var account = db.Accounts.Where(a => a.AccountNumber == accountNumber).FirstOrDefault();
             if (account == null)
@@ -65,7 +65,7 @@ namespace bankproject
         }
         public static List<Transcation> GetAllTransactionsByAccount(int accountNumber)
         {
-            return db.Transactions.Where(t => t.AccountNumber == accountNumber).ToList();
+            return db.Transactions.Where(t => t.AccountNumber == accountNumber).OrderByDescending(t => t.TransactionDate).ToList();
         }
         public static Account GetAccountByAccountNumber(int id)
         {
