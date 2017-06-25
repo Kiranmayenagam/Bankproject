@@ -25,7 +25,9 @@ namespace bankproject
         /// <summary>
         /// Email Address of the account owner.
         /// </summary>
-        [Required]
+        //[Required(ErrorMessage = "You must provide emailaddress")]
+        //[StringLength(50,ErrorMessage = "emailadddress must 50 charcters in leght")]
+        //[EmailAddress]
         public string EmailAddress { get; set; }
         [Key]
         public int AccountNumber { get; set; }

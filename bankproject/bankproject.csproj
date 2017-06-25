@@ -69,6 +69,18 @@
     <Compile Include="Migrations\201705212135439_CreatedDateAddition.Designer.cs">
       <DependentUpon>201705212135439_CreatedDateAddition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706182106027_Changes.cs" />
+    <Compile Include="Migrations\201706182106027_Changes.Designer.cs">
+      <DependentUpon>201706182106027_Changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706251646222_Changes1.cs" />
+    <Compile Include="Migrations\201706251646222_Changes1.Designer.cs">
+      <DependentUpon>201706251646222_Changes1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706251704442_Changes2.cs" />
+    <Compile Include="Migrations\201706251704442_Changes2.Designer.cs">
+      <DependentUpon>201706251704442_Changes2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transcation.cs" />
@@ -86,6 +98,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705212135439_CreatedDateAddition.resx">
       <DependentUpon>201705212135439_CreatedDateAddition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706182106027_Changes.resx">
+      <DependentUpon>201706182106027_Changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706251646222_Changes1.resx">
+      <DependentUpon>201706251646222_Changes1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706251704442_Changes2.resx">
+      <DependentUpon>201706251704442_Changes2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

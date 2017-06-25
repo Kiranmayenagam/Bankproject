@@ -54,10 +54,22 @@ namespace BankProjectUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Withdraw(FormCollection controls)
         {
-            var accountNumber = Convert.ToInt32(controls["AccountNumber"]);
-            var amount = Convert.ToDecimal(controls["Amount"]);
-            Bank.Withdraw(accountNumber, amount);
-            return RedirectToAction("Index");
+            try
+            {
+                var accountNumber = Convert.ToInt32(controls["AccountNumber"]);
+                var amount = Convert.ToDecimal(controls["Amount"]);
+                Bank.Withdraw(accountNumber, amount);
+                return RedirectToAction("Index");
+            }
+            catch(ArgumentOutOfRangeException aox)
+            {
+                ViewBag.ErrorMessage = aox.Message;
+            }
+            catch(ArgumentException ax)
+            {
+                ViewBag.ErrorMessage = ax.Message;
+            }
+            return View();
         }
         public ActionResult Transactions(int? id)
         {
@@ -88,16 +100,18 @@ namespace BankProjectUI.Controllers
         // GET: Accounts/Create
         public ActionResult Create()
         {
-            return View();
+            var account = new Account { EmailAddress = HttpContext.User.Identity.Name };
+            return View(account);
         }
 
-        // POST: Accounts/Create
+;        // POST: Accounts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AccountNumber,EmailAddress,Balance,TypeOfAccount")] Account account)
         {
+            account.EmailAddress = HttpContext.User.Identity.Name;
             if (ModelState.IsValid)
             {
                 Bank.CreateAccount(account.EmailAddress, 0.0M, account.TypeOfAccount);
